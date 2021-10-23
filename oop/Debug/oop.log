@@ -1,0 +1,8 @@
+﻿  oop.cpp
+C:\Everything\labs\prog_engin\lab2\lab2\oop\oop\oop.cpp(78,23): warning C4018: '<': signed/unsigned mismatch
+C:\Everything\labs\prog_engin\lab2\lab2\oop\oop\oop.cpp(88,23): warning C4018: '<': signed/unsigned mismatch
+C:\Everything\labs\prog_engin\lab2\lab2\oop\oop\oop.cpp(148,21): warning C4018: '>': signed/unsigned mismatch
+C:\Everything\labs\prog_engin\lab2\lab2\oop\oop\oop.cpp(161,21): warning C4018: '>': signed/unsigned mismatch
+C:\Everything\labs\prog_engin\lab2\lab2\oop\oop\oop.cpp(191,21): warning C4018: '>': signed/unsigned mismatch
+C:\Everything\labs\prog_engin\lab2\lab2\oop\oop\oop.cpp(208,21): warning C4018: '>': signed/unsigned mismatch
+  oop.vcxproj -> C:\Everything\labs\prog_engin\lab2\lab2\oop\Debug\oop.exe
