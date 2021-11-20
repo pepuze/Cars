@@ -93,6 +93,16 @@ void save(std::vector<Car>& cars) {
     fout.close();
 }
 
+void saveIn(std::vector<Car>& cars, std::string savePath) {
+    std::ofstream fout(savePath);
+    for (int i = 0; i < cars.size(); ++i) {
+        if (!cars[i].isDel()) {
+            fout << cars[i].getCmp() << " " << cars[i].getMdl() << " " << cars[i].getClr() << " " << cars[i].getFwd() << std::endl;
+        }
+    }
+    fout.close();
+}
+
 void printHelp() {
     std::cout << "свойства элемента 'машина' идут в таком порядке - company, model, color, fwd\n";
     std::cout << "change *номер элемента* *свойство* - меняет свойство элемента\n";
@@ -102,7 +112,9 @@ void printHelp() {
     std::cout << "delete *номер элемента* - помечает элемент на удаление\n";
     std::cout << "remove - подтвердить удаление поченных элементов\n";
     std::cout << "undelete *номер элемента* - убирает пометку на удаление элемента\n";
-    std::cout << "save - сохраняет текущий список элементов\n";
+    std::cout << "save - сохраняет текущий список элементов в savet.txt\n";
+    std::cout << "saveIn *savepath.txt* - сохраняет текущий список элементов в savepath.txt\n";
+    std::cout << "loadFrom *loadpath.txt* - загружает список элементов из loadpath.txt\n";
     std::cout << "exit - закрывает программу с сохранением текущего списка элементов\n\n";
 }
 
@@ -126,14 +138,28 @@ void load(std::vector<Car> &cars) {
     fin.close();
 }
 
-
+void loadFrom(std::vector<Car>& cars, std::string loadPath) {
+    std::string s;
+    cars.clear();
+    std::ifstream fin(loadPath);
+    while (fin >> s) {
+        Car car;
+        car.setCmp(s);
+        fin >> s;
+        car.setMdl(s);
+        fin >> s;
+        car.setClr(s);
+        fin >> s;
+        car.setFwd(stoi(s));
+        cars.push_back(car);
+    }
+    fin.close();
+}
 
 int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
     
-    load(cars);
-
     std::string command;
 
     printList(cars);
@@ -173,6 +199,13 @@ int main() {
 
         else if (command == "list") {
             printList(cars);
+        }
+
+        else if (command == "loadFrom") {
+            std::string loadPath;
+            std::cin >> loadPath;
+            loadFrom(cars, loadPath);
+            std::cout << "Данные загружены из " << loadPath << "\n\n";
         }
 
         else if (command == "add") {
@@ -216,6 +249,13 @@ int main() {
         else if (command == "save") {
             save(cars);
             std::cout << "Данные сохранены\n\n";
+        }
+
+        else if (command == "saveIn") {
+            std::string savePath;
+            std::cin >> savePath;
+            saveIn(cars, savePath);
+            std::cout << "Данные сохранены в " << savePath << "\n\n";
         }
 
         else if (command == "exit") {
